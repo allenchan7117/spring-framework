@@ -16,46 +16,24 @@
 
 package org.springframework.beans;
 
-import java.beans.ConstructorProperties;
-import java.beans.PropertyDescriptor;
-import java.beans.PropertyEditor;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Type;
-import java.net.URI;
-import java.net.URL;
-import java.time.temporal.Temporal;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-
 import kotlin.jvm.JvmClassMappingKt;
 import kotlin.reflect.KFunction;
 import kotlin.reflect.KParameter;
 import kotlin.reflect.full.KClasses;
 import kotlin.reflect.jvm.KCallablesJvm;
 import kotlin.reflect.jvm.ReflectJvmMapping;
-
-import org.springframework.core.DefaultParameterNameDiscoverer;
-import org.springframework.core.KotlinDetector;
-import org.springframework.core.MethodParameter;
-import org.springframework.core.ParameterNameDiscoverer;
-import org.springframework.core.ResolvableType;
+import org.springframework.core.*;
 import org.springframework.lang.Nullable;
-import org.springframework.util.Assert;
-import org.springframework.util.ClassUtils;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.ConcurrentReferenceHashMap;
-import org.springframework.util.ReflectionUtils;
-import org.springframework.util.StringUtils;
+import org.springframework.util.*;
+
+import java.beans.ConstructorProperties;
+import java.beans.PropertyDescriptor;
+import java.beans.PropertyEditor;
+import java.lang.reflect.*;
+import java.net.URI;
+import java.net.URL;
+import java.time.temporal.Temporal;
+import java.util.*;
 
 /**
  * Static convenience methods for JavaBeans: for instantiating beans,
@@ -210,6 +188,7 @@ public abstract class BeanUtils {
 						argsWithDefaultValues[i] = args[i];
 					}
 				}
+				//通过反射获得的构造器 实例化 对象
 				return ctor.newInstance(argsWithDefaultValues);
 			}
 		}
